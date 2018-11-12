@@ -1,10 +1,10 @@
 #!/bin/sh
 
-set -x 
+set -x
 set -e
 
 IMAGE_NAME="$1"
-IMAGE_SIZE=6144M
+IMAGE_SIZE=6144
 PART_POSITION=20480 # K
 FAT_SIZE=100 #M
 SWAP_SIZE=2048 # M
@@ -19,7 +19,8 @@ if [ "$(id -u)" -ne "0" ]; then
 	exit 1
 fi
 
-fallocate -l $IMAGE_SIZE $IMAGE_NAME
+#fallocate -l $IMAGE_SIZE $IMAGE_NAME
+dd if=/dev/zero of=$IMAGE_NAME seek=$IMAGE_SIZE bs=1M count=0
 
 cat << EOF | fdisk $IMAGE_NAME
 o

@@ -62,7 +62,7 @@ fi
 # Extract with BSD tar
 echo -n "Extracting ... "
 set -x
-bsdtar -xpf $TAR_OPTIONS "$TARBALL" -C "$DEST"
+tar -xvf $TAR_OPTIONS "$TARBALL" -C "$DEST"
 echo "OK"
 
 # Add qemu emulation.
@@ -89,7 +89,7 @@ sed -i 's|CheckSpace|#CheckSpace|' "$DEST/etc/pacman.conf"
 cat >> "$DEST/etc/pacman.conf" <<EOF
 [pine64-mainline]
 SigLevel = Never
-Server = https://github.com/anarsoul/PKGBUILDs/releases/download/mainline/
+Server = https:///github.com/escalion/PKGBUILDs/releases/download/mainline/
 EOF
 
 cat > "$DEST/second-phase" <<EOF
